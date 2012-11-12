@@ -1,0 +1,174 @@
+
+{% extends "layout.phtml" %}
+{% block mainbody %} 
+		<div class="maintitle"><h1>Submit a Recipe</h1></div>
+		<div class="separator">&nbsp;</div>
+			<ul class="submitInputList">
+				<li>
+					<div class="labelCol">
+						<label for="submitted_by">Submitted By:</label>
+					</div>
+					<div class="inputCol">
+						<select id="submitted_by" data-type="id" name="submitted_by">
+							<option value="-1">Please Select</option>
+						</select>
+					</div>
+					</li>
+				<li>
+					<div class="labelCol">
+						<label for="recipe_title">Title: </label>
+					</div>
+					<div class="inputCol">	
+						<input id="recipe_title" data-type="string" name="recipe_title"/>
+					</div>
+				</li>
+				<li>
+					<div class="labelCol">
+						<label for="recipe_category">Category:</label>
+					</div>
+					<div class="inputCol">
+						<select id="recipe_category" data-type="number" name="recipe_category">
+							<option value="-1">Please Select</option>
+							{% for category in categories %}
+							<option value="{{ category.value }}">{{ category.text }}</option>
+							{% endfor %}	
+						</select>
+					</div>
+				</li>
+				<li>
+					<div class="labelCol">
+						<label for="recipe_serves">How many does this recipe serve?</label>
+					</div>
+					<div class="inputCol">
+						<input id="recipe_serves" data-type="number" name="recipe_serves" value="0" class="input-small"/>
+					</div>
+				</li>
+				<li>
+					<div class="labelCol">
+						<label for="prep_time_hours">What is the prep time? </label>
+					</div>
+					<div class="inputCol">
+						<input id="prep_time_hours" name="prep_time_hours" class="input-small" value="0" /> hours 
+						<input id="prep_time_min" name="prep_time_min" class="input-small" value="0" /> minutes
+						<input id="recipe_prep_time_min" data-type="number" type="hidden" />
+					</div>
+				</li>
+				<li>
+					<div class="labelCol">
+						<label for="cook_time_hours">What is the cook time? </label>
+					</div>
+					<div class="inputCol">
+						<input id="cook_time_hours" name="cook_time_hours" class="input-small" value="0" /> hours 
+						<input id="cook_time_min" name="cook_time_min" class="input-small" value="0" /> minutes
+						<input type="hidden" data-type="number" id="recipe_cook_time_min" />
+					</div>
+				</li>
+				<li>
+					<div style="display: inline-block; position: relative; top: 0px">
+						<div class="labelCol">
+							<label for="recipe_ingredient">Ingredients: </label>
+						</div>
+						<div class="inputCol">
+							<input id="ingredient_input" name="ingredient_input" class="input-large"/>
+							<div style="display: inline-block">
+								<button class="add" value="" id="ingredient_btn" onclick="updateList(this)">add</button>
+								<input type="hidden" data-type="array" id="recipe_ingredients" />
+							</div>
+							<ul id="ingredients_list">
+							</ul>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div>
+						<div class="labelCol" style="display: inline-block; position: relative; top: 0px">
+							<label for="recipe_instructions">Instructions: </label>
+						</div>
+						<div class="inputCol">
+							<input id="instructions_input" name="instructions_input" class="input-large"/>
+							<div style="display: inline-block">
+								<button class="add" value="" id="instructions_btn" onclick="updateList(this)">add</button>
+								<input type="hidden" data-type="array" id="recipe_instructions" />
+							</div>
+							<ol id="instructions_list">
+							</ol>
+						</div>
+					</div>
+				</li>
+				<li id="fileUpload">
+					<div class="labelCol">
+						<span class="upload_text">Upload Image:</span>
+					</div>
+					<div class="inputCol">
+						<div class="file_input">
+							<input id="fileupload" type="file" name="files[]" data-url="server/php/"/>
+							<input type="hidden" data-type="string" id="recipe_main_photo" />
+						</div>
+						<div class="progress">
+							<span class="progress_icon"></span>
+						</div>
+						<div class="uploaded_file">
+							<span></span>
+						</div>
+						<div class="preview"></div>
+					</div>
+				</li>
+				<li>
+					<div class="labelCol">Additional comments:</div>
+					<div class="inputCol">
+						<textarea id="recipe_notes" cols="50" rows="5" data-type="string"></textarea>
+					</div>
+				</li>
+				<li class="submitContainer">
+					<button id="submit" onclick="submit()">Submit!</button>
+				</li>
+			</ul>
+
+		<!--  File Upload -->
+		<div>
+
+
+		</div>
+{% endblock %}
+{% block customScript %}
+		<script>
+			$(document).ready(function () {
+	
+				$('#fileupload').fileupload({
+        			singleFileUploads: true,
+        			dataType: 'json',
+        			acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
+        			done: function (e, data) {
+            		$.each(data.result, function (index, file) {
+                		$('<p/>').text(file.name).appendTo(document.body);
+            		});
+        		}
+    		});
+
+   		$('#cook_time_hours, #cook_time_min, #prep_time_hours, #prep_time_min').change(function(){
+
+		if($(this).attr('id').indexOf('cook') >= 0)
+			{
+				var totalMin = (Number($('#cook_time_hours').val()) * 60) + Number($('#cook_time_min').val());
+				$('#recipe_cook_time_min').val(totalMin);
+			}
+			else if($(this).attr('id').indexOf('prep') >= 0)
+			{
+				var totalMin = (Number($('#prep_time_hours').val()) * 60) + Number($('#prep_time_min').val());
+				$('#recipe_prep_time_min').val(totalMin);
+			}
+   		});
+
+    	initSubmittedDropdown();
+
+    	$('#fileupload').bind('fileuploadfail', function (e, data) {alert('error!');});
+   		$('#fileupload').bind('fileuploadstart', function(e, data) { start(); });
+    	$('#fileupload').bind('fileuploaddone', function (e, data) { done(data);  });
+    	$('#fileupload').bind('fileuploadprogress', function (e, data) { progressUpdate(data); });
+		});
+
+
+		</script>
+{% endblock %}
+
+

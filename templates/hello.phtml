@@ -1,0 +1,12 @@
+<html>
+	<head><title>My First Template</title></head>
+	<body>
+		My Name is {{ name }}.
+		My Friends are:
+		<ul>
+		{% for person in friends %}
+			<li>{{ person.firstname}} {{ person.lastname }}
+		{% endfor %}
+		</ul>
+	</body>
+</html>

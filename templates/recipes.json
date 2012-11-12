@@ -1,0 +1,9 @@
+{
+"html":"<ul class=\"recipeList\"><?php foreach ($this->recipes as _$recipe): ?><li class=\"recipe\">"
+       "<div class=\"icon\"><img src=\"/img/food_icon.jpg\"/></div><div class=\"info\"><ul>"
+	"<li><h1><? = $recipe.recipe_title ?></h1></li>"
+	"<li><h3>Serves 6</h3></li><li><h3>Prep/Cook Time: 1 hour 45 min</h3></li><li><h3>Submitted by: Dave</h3></li>"
+	"<li><h3>6/7/2012 12:00 am</h3></li></ul></div><div class=\"userInfo\"><ul><li><h2>David Mitchell</h2></li>"
+	"<li><h3>24 Recipes Posted</h3></li></ul><img class=\"userIconImg\" src=\"/img/icon.jpg\"/></div></li>"
+	"<?php endforeach; ?></ul>", "total": "<? =$total ?>"
+}

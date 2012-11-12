@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>{{ pageInfo.title }}</title>
+	<link rel="stylesheet" type="text/css" href="/css/main.css" />
+	<link rel="stylesheet" type="text/css" href="/css/pagination.css" />
+</head>
+
+<body>
+<!--  All content goes here -->
+	<div class="maincontainer">
+
+	<!-- Header stuff -->
+		<div class="headercontainer">
+			<div class="logocontainer">
+				<div class="logo">Logo!</div>
+				<div class="logininfo">
+					<div class="infotext">
+						<p class="loginName">{{ userInfo.name }}</p>
+						<p class="loginNumRecipes">{{ userInfo.recipes }} recipes posted</p>
+					</div>
+					<div class="accountIcon"><img class="icon" src="/img/icon.jpg" /></div>
+				</div>
+			</div>
+			<div class="searchcontainer">
+				<div class="searchInput">
+					<input type="text" value="Search Recipes" class="search" onFocus="if(this.value=='Search Recipes'){this.value=''; this.style.color = '#000000';}" onBlur="if(this.value == ''){this.value = 'Search Recipes'; this.style.color='#999';}"/>
+				</div>
+			</div>
+		</div>
+
+		<div class="maincontent">
+			<div class="navcontainer">
+				<ul>
+				{% for item in navLinks %}
+					<li><a href="{{ item.link }}">{{ item.text }}</a></li>
+				{% endfor %}
+				</ul>
+
+			</div>
+
+			<div class="mainbody">
+			{% block mainbody %} I NEED CONTENT! {% endblock %}
+			</div>
+		</div>
+	</div>
+
+        {% for script in scripts %}
+		<script src="{{ script }}" type="text/javascript"></script>
+	{% endfor %}
+ 	{% block customScript %} {% endblock %}
+
+</body>
+</html>

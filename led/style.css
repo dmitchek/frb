@@ -1,0 +1,25 @@
+.led-table
+{
+	background: #000;
+}
+
+.led{
+	width: 20px;
+	height: 10px;
+	border: 1px solid #333;
+	border-radius: 100;
+	cursor: pointer;
+}
+
+
+.on {
+ background-color: #00f;
+}
+
+.saved-char
+{
+	width: 20px;
+	height: 20px;
+	margin: 3px;
+}
+

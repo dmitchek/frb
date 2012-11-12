@@ -1,0 +1,313 @@
+@CHARSET "UTF-8";
+
+body
+{
+	color: #333;
+	padding: 0px;
+	margin: 0px;
+}
+
+ul
+{
+	list-style-type:none;
+}
+
+.maincontainer
+{
+	margin: 0 auto;
+	width: 1280px;
+	
+	border: 1px solid;
+}
+
+.headercontainer
+{
+	height: 186px;
+}
+
+.logocontainer
+{
+	height: 152px;
+	background-color: #fff;
+}
+
+.searchcontainer
+{
+	height: 34px;
+	background-color: #fc421c;
+}
+
+.navcontainer
+{
+	width: 272px;
+	background-color: #fefaca;
+	display: inline-block;
+	float:left;
+	min-height: 400px;
+}
+
+.maincontent
+{
+	display:inline-block;
+}
+
+.mainbody
+{
+	margin-left: 273px;
+	color: #28617f;
+	width: 1008px;
+}
+
+.mainbody h1
+{
+	font-size: 24pt;
+	font-family: 'Arial';
+	font-weight: 100;
+}
+
+.mainbody .maintitle
+{
+	padding-left: 200px;
+}
+
+.separator
+{
+	position: relative;
+	left: 10px;
+	width: 100%;
+	background-color: #28617f;
+	height: 2px;
+	width: 98%;
+}
+
+.logo
+{
+	width: 873px;
+	margin-left: 17px;
+	position: relative;
+	top: 0px;
+	display: inline-block;
+	float:left;
+}
+
+.logininfo
+{
+	width: 324px;
+	display: inline-block;
+}
+
+.loginName
+{
+	margin:0px;
+}
+
+.loginNumRecipes
+{
+	clear:both;
+	margin-top: 5px;
+}
+
+.infotext
+{
+	display: inline-block;
+	float:left;
+	margin-right: 5px;
+}
+
+.accountIcon
+{
+	width: 125px;
+	height: 125px;
+	display: inline-block;
+}
+
+.search
+{
+	width: 195px;
+	height: 23px;
+	margin-left: 23px;
+	border: none;
+	color: #999;
+}
+
+.searchInput
+{
+	margin-left: 20px;
+	width: 218px;
+	position: relative;
+	top: 5px;
+	background: url('../img/mag_glass.jpg') #fff no-repeat;
+}
+
+.input-small
+{
+	width: 50px;
+}
+
+.input-large
+{
+	width: 350px;
+}
+
+.selected
+{
+	border: 1px solid #333;
+}
+
+.listItemEdit, .listItemRemove
+{
+	display: inline-block;
+	margin-left: 5px;
+	margin-right: 2px;
+	cursor: pointer;
+	color: #333;
+	font-size: small;
+}
+
+.file_input_btn
+{
+	overflow:hidden;
+}
+
+#fileUpload .progress, #fileUpload .uploaded_file
+{
+	display:none;
+}
+
+#fileUpload .progress
+{
+	display: block;
+	width: 400px;
+}
+
+#fileUpload .progress_icon
+{
+	position: relative;
+	left: 0px;
+}
+
+#fileUpload .preview .previewImage
+{
+	width: 50px;
+	height: 50px;
+}
+
+.submitInputList li
+{
+		margin-top: 15px;
+}
+
+.submitInputList input
+{
+	border: 1px solid #999;
+	height: 20px;
+	font-size: 14pt;
+	color: #666;
+}
+
+.submitContainer
+{
+	text-align: center;
+}
+
+#submit
+{
+	width: 180px;
+	height: 53px;
+	background-color: #fc401b;
+	border: 1px solid #333;
+	color: #fff;
+	font-size: 22pt;
+}
+
+#submit:active
+{
+	background-color: #333;
+}
+
+.labelCol
+{
+	display:inline-block;
+	width: 300px;
+	text-align: right;
+	color: #6ca3c2;
+	font-size: 18pt;
+	vertical-align: top;
+	position: relative;
+	top: -4px;
+}
+
+.inputCol
+{
+	display:inline-block;
+	font-size: 10pt;
+	font-family: 'Arial';
+	color: #999;
+}
+
+.recipe
+{
+	height: 110px;
+	width: 895px;
+	border-bottom: 1px solid #333;
+	padding: 15px 0px;
+}
+
+.recipeList ul
+{
+	padding: 0px;
+}
+
+.recipeList li div
+{
+	display: inline-block;
+	vertical-align: top;
+}
+
+.recipeList .icon img
+{
+	width: 110px;
+	height: 110px;
+}
+
+.recipeList .icon
+{
+	margin-right: 5px;
+}
+
+.recipeList h1
+{
+	font-size: 24pt;
+	font-weight: bold;
+	margin: 0px;
+}
+
+.recipeList h2
+{
+	font-size: 10pt;
+	margin: 0px;
+}
+
+.recipeList h3
+{
+	font-size: 8pt;
+	margin: 0px;
+}
+
+.recipeList .userInfo img
+{
+	float: right;
+	width: 110px;
+	height: 110px;
+}
+
+.recipeList .userInfo
+{
+	text-align: right;
+	float: right;
+}
+
+.recipeList .userInfo ul
+{
+	float:left;
+}
